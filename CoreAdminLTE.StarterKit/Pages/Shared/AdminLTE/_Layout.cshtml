@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CoreAdminLTE Starter Kit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <partial name="AdminLTE/_Styles" />
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <partial name="AdminLTE/_TopNavigation" />
+        <partial name="AdminLTE/_Sidebar" />
+        <div class="content-wrapper" style="padding: 20px;min-height: 530.031px;background:white!important;">
+            @RenderBody()
+        </div>
+        @await Component.InvokeAsync("NToastNotify")
+        <partial name="AdminLTE/_Footer" />
+        <aside class="control-sidebar control-sidebar-dark">
+        </aside>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                            <button type="submit" class="btn btn-primary">Logout</button>
+                        </form>
+                    </div>
+                </div>  <!-- End of Content Wrapper -->
+            </div>
+            <partial name="AdminLTE/_Scripts" />
+            @RenderSection("Scripts", required: false)
+</body>
+</html>

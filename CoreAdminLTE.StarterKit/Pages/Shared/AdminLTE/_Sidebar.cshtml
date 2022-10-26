@@ -1,0 +1,127 @@
+﻿@using Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<aside class="main-sidebar elevation-2 sidebar-light-primary">
+    <!-- Brand Logo -->
+    <a href="/" class="brand-link">
+        <img src="~/img/girishgodage_logo.jpg"
+             alt="CoreAdminLTE Logo"
+             class="brand-image img-circle elevation-0"
+             style="opacity: .8">
+        <div>
+            <span class="brand-text font-weight-light">CoreAdminLTE Starter</span>
+        </div>
+
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        @if (SignInManager.IsSignedIn(User))
+        {
+
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+                @if (UserManager.GetUserAsync(User).Result.ProfilePicture != null)
+                {
+                    <div class="image">
+                        <img class="img-circle elevation-0" style="width:40px;height:40px; object-fit:cover; border-radius:30px" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))">
+                    </div>
+                }
+
+                <div class="info">
+                    <a href="#" class="d-block">
+                        @UserManager.GetUserAsync(User).Result.FirstName @UserManager.GetUserAsync(User).Result.LastName @{
+                            if (User.IsInRole("SuperAdmin"))
+                            {
+                                <span class="badge badge-danger">SA</span>
+                            }
+                            else if (User.IsInRole("Basic"))
+                            {
+                                <span class="badge badge-success">BASIC</span>
+                            }
+                        }
+                    </a>
+                </div>
+            </div>
+        }
+
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                    <a is-active-page asp-page="/Index" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            Home
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Document Repository
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a is-active-page asp-area="Mail" asp-page="/Compose" class="nav-link">
+                        <i class="nav-icon fas fa-mail-bulk"></i>
+                        <p>
+                            Mail
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a is-active-page asp-area="Mail" asp-page="/Compose" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Compose Mail</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-header">Settings</li>
+                <li class="nav-item">
+                    <a is-active-page asp-area="Identity" asp-page="/Account/Manage/Index" class="nav-link">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>
+                            Account Settings
+                        </p>
+                    </a>
+                </li>
+                @{
+                    if (User.IsInRole("SuperAdmin"))
+                    {
+                        <li class="nav-header">SUPER ADMIN</li>
+                        <li class="nav-item">
+                            <a is-active-page asp-area="Identity" asp-page="/Account/Users" class="nav-link">
+                                <i class="nav-icon fas fa-users-cog"></i>
+                                <p>
+                                    Manage User Roles
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a is-active-page asp-area="Identity" asp-page="/Account/Roles" class="nav-link">
+                                <i class="nav-icon fas fa-user-lock"></i>
+                                <p>
+                                    Manage Roles
+                                </p>
+                            </a>
+                        </li>
+                    }
+                }
+
+
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

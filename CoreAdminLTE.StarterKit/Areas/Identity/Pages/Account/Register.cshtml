@@ -1,0 +1,109 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Registration</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <partial name="AdminLTE/_Styles" />
+</head>
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+            <a href="https://girishgodage.in"><b>Admin</b>LTE</a> Starter Kit
+        </div>
+
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Register a new membership</p>
+
+                <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <small> <span asp-validation-for="Input.FirstName" class="text-danger"></span></small>
+                    <div class="input-group mb-3">
+                        <input asp-for="Input.FirstName" type="text" class="form-control" placeholder="First Name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <small><span asp-validation-for="Input.LastName" class="text-danger"></span></small>
+                    <div class="input-group mb-3">
+                        <input asp-for="Input.LastName" type="text" class="form-control" placeholder="Last Name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <small> <span asp-validation-for="Input.UserName" class="text-danger"></span></small>
+                    <div class="input-group mb-3">
+                        <input asp-for="Input.UserName" type="text" class="form-control" placeholder="User Name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <small><span asp-validation-for="Input.Email" class="text-danger"></span></small>
+                    <div class="input-group mb-3">
+                        <input asp-for="Input.Email" type="email" class="form-control" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <small><span asp-validation-for="Input.Password" class="text-danger"></span></small>
+                    <div class="input-group mb-3">
+                        <input asp-for="Input.Password" type="password" class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <small><span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span></small>
+                    <div class="input-group mb-3">
+                        <input asp-for="Input.ConfirmPassword" type="password" class="form-control" placeholder="Retype password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <!-- /.col -->
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+
+            </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
+    </div>
+    <a href="login.html" class="text-center">Already Registered?</a>
+    <br />
+    <small style="font-size:15px"> Made with <span style="color: #e25555;">&hearts;</span> by <a href="http://girishgodage.in">girishgodage</a> and <a href="http://adminlte.io">AdminLTE.io</a>.</small>
+    <partial name="AdminLTE/_Scripts" />
+</body>
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
